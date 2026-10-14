@@ -1,176 +1,57 @@
-<div class="container">
-  <h1>Iniciar Sesión</h1>
-  <h2>Bienvenido al sistema</h2>
-  <h2>Este es un ejemplo de prueba para verificar si sirven los estilos</h2>
-
-  <div class="container">
-    <h2>Booststrap</h2>
-    <br>
-    <div class="accordion" id="accordionExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-            aria-expanded="true" aria-controls="collapseOne">
-            Accordion Item #1
-          </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-          data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin
-            adds the appropriate classes that we use to style each element. These classes control the overall
-            appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom
-            CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the
-            <code>.accordion-body</code>, though the transition does limit overflow.
-          </div>
-        </div>
+<section class="login-new">
+  <div class="login-container">
+    <!-- Section Left: Form -->
+    <div class="login-form-section">
+      <div class="login-brand">
+        <img src="/assets/images/escudoB.png" alt="Logo BUAP" class="logo-buap" />
+        <span class="brand-title">Sistema Escolar</span>
       </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingTwo">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Accordion Item #2
-          </button>
-        </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-          data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
-            plugin adds the appropriate classes that we use to style each element. These classes control the overall
-            appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom
-            CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the
-            <code>.accordion-body</code>, though the transition does limit overflow.
-          </div>
+      <h2 class="login-title">Iniciar sesión</h2>
+      <p class="login-subtitle">Ingresa los datos que registraste</p>
+      <!-- Aquí vamos a colocar el formulario de inicio de sesión -->
+      <form (ngSubmit)="login()" class="login-form" #form="ngForm">
+        <!-- Se agregan los inputs para el correo y la contraseña, con validaciones de Angular -->
+        <!-- Campo para el correo electrónico -->
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" [(ngModel)]="username" name="username" class="form-control" id="email" placeholder="nombre@correo.com" autocomplete="username" />
+          @if (errors.username) {
+            <div class="invalid-feedback">{{ errors.username }}</div>
+          }
         </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingThree">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Accordion Item #3
-          </button>
-        </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-          data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin
-            adds the appropriate classes that we use to style each element. These classes control the overall
-            appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom
-            CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the
-            <code>.accordion-body</code>, though the transition does limit overflow.
+        <!-- Campo para la contraseña -->
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <div style="position:relative;">
+            <input [type]="typeInput" [(ngModel)]="password" id="password" name="password_user" class="form-control pwd"
+              placeholder="Mínimo 8 caracteres" autocomplete="current-password" (keyup.enter)="login()" style="padding-right:40px;" />
+            <span class="show-password" (click)="showPassword()"
+              style="position:absolute; right:18px; top:50%; transform:translateY(-50%);">
+              <i [ngClass]="typeInput == 'password' ? 'bi bi-eye-fill' : 'bi bi-eye-slash-fill'"></i>
+            </span>
           </div>
+          @if (errors.password) {
+            <div class="invalid-feedback">{{ errors.password }}</div>
+          }
         </div>
+        <!-- Se agrega el label de olvidé mi contraseña -->
+        <div class="form-links">
+          <a (click)="olvideContrasena()">¿Olvidaste tu contraseña?</a>
+        </div>
+        <!-- Botón de inicio de sesión -->
+        <button class="btn-login" type="submit" [disabled]="load">Iniciar sesión</button>
+        <div class="form-register">
+          ¿No tienes cuenta? <a (click)="registrar()">Regístrate</a>
+        </div>
+      </form>
+    </div>
+    <!-- Section Right: Image -->
+    <div class="login-illustration-section">
+      <div class="welcome-message">
+        <h2>Bienvenido al Sistema Escolar</h2>
+        <p>Gestiona tus actividades académicas de manera eficiente y sencilla.</p>
       </div>
+      <img src="/assets/images/buap-fcc.jpg" alt="Ilustración bienvenida" class="login-illustration" />
     </div>
   </div>
-
-  <div class="container">
-    <section>
-      <div class="example-label">Text</div>
-      <div class="example-button-row">
-        <button matButton>Basic</button>
-        <button matButton disabled>Disabled</button>
-        <a matButton href="https://www.google.com/" target="_blank">Link</a>
-      </div>
-    </section>
-    <mat-divider />
-    <section>
-      <div class="example-label">Elevated</div>
-      <div class="example-button-row">
-        <button matButton="elevated">Basic</button>
-        <button matButton="elevated" disabled>Disabled</button>
-        <a matButton="elevated" href="https://www.google.com/" target="_blank">Link</a>
-      </div>
-    </section>
-    <mat-divider />
-    <section>
-      <div class="example-label">Outlined</div>
-      <div class="example-button-row">
-        <button matButton="outlined">Basic</button>
-        <button matButton="outlined" disabled>Disabled</button>
-        <a matButton="outlined" href="https://www.google.com/" target="_blank">Link</a>
-      </div>
-    </section>
-    <mat-divider />
-    <section>
-      <div class="example-label">Filled</div>
-      <div class="example-button-row">
-        <button matButton="filled">Basic</button>
-        <button matButton="filled" disabled>Disabled</button>
-        <a matButton="filled" href="https://www.google.com/" target="_blank">Link</a>
-      </div>
-    </section>
-    <mat-divider />
-    <section>
-      <div class="example-label">Tonal</div>
-      <div class="example-button-row">
-        <button matButton="tonal">Basic</button>
-        <button matButton="tonal" disabled>Disabled</button>
-        <a matButton="tonal" href="https://www.google.com/" target="_blank">Link</a>
-      </div>
-    </section>
-    <mat-divider />
-    <section>
-      <div class="example-label">Icon</div>
-      <div class="example-button-row">
-        <div class="example-flex-container">
-          <button matIconButton aria-label="Example icon button with a vertical three dot icon">
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <button matIconButton disabled aria-label="Example icon button with a open in new tab icon">
-            <mat-icon>open_in_new</mat-icon>
-          </button>
-        </div>
-      </div>
-    </section>
-    <mat-divider />
-    <section>
-      <div class="example-label">Floating Action Button (FAB)</div>
-      <div class="example-button-row">
-        <div class="example-flex-container">
-          <button matFab aria-label="Example icon button with a delete icon">
-            <mat-icon>delete</mat-icon>
-          </button>
-          <button matFab disabled aria-label="Example icon button with a heart icon">
-            <mat-icon>favorite</mat-icon>
-          </button>
-        </div>
-      </div>
-    </section>
-    <mat-divider />
-    <section>
-      <div class="example-label">Mini FAB</div>
-      <div class="example-button-row">
-        <div class="example-flex-container">
-          <button matMiniFab aria-label="Example icon button with a menu icon">
-            <mat-icon>menu</mat-icon>
-          </button>
-          <button matMiniFab disabled aria-label="Example icon button with a home icon">
-            <mat-icon>home</mat-icon>
-          </button>
-        </div>
-      </div>
-    </section>
-    <mat-divider />
-    <section>
-      <div class="example-label">Extended FAB</div>
-      <div class="example-button-row">
-        <div class="example-flex-container">
-          <button matFab extended>
-            <mat-icon>favorite</mat-icon>
-            Basic
-          </button>
-          <button matFab extended disabled>
-            <mat-icon>favorite</mat-icon>
-            Disabled
-          </button>
-          <a matFab extended routerLink=".">
-            <mat-icon>favorite</mat-icon>
-            Link
-          </a>
-        </div>
-      </div>
-    </section>
-
-  </div>
-</div>
+</section>
