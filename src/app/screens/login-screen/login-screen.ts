@@ -4,41 +4,32 @@ import { Router } from 'express';
 
 @Component({
   selector: 'app-login-screen',
-  imports: [
-    ...SHARED_IMPORTS
-  ],
+  imports: [...SHARED_IMPORTS],
   templateUrl: './login-screen.html',
   styleUrl: './login-screen.scss',
 })
 export class LoginScreen implements OnInit {
-
   //Se definen las variables globales que se utilizarán en el componente
   public username: string = '';
   public password: string = '';
   public load: boolean = false;
   public errors: any = {};
-  public typeInput: string = "password";
 
-  constructor() { }
+  // Tipo de campo para la contraseña
+  public typeInput: 'password' | 'text' = 'password';
 
-  ngOnInit(): void {
+  constructor() {}
 
+  ngOnInit(): void {}
+
+  public login() {}
+
+  // Función para mostrar y ocultar la contraseña
+  showPassword(): void {
+    this.typeInput = this.typeInput === 'password' ? 'text' : 'password';
   }
 
-  public login() {
+  public registrar() {}
 
-  }
-
-  public showPassword() {
-
-  }
-
-  public registrar(){
-
-  }
-
-  public olvideContrasena(){
-
-  }
-
+  public olvideContrasena() {}
 }
