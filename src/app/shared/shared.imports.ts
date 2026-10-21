@@ -12,6 +12,8 @@ import { RouterModule } from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
+import {MatRadioModule} from '@angular/material/radio';
 /**
  * SHARED_IMPORTS
  * ---------------------------------------------------------
@@ -32,4 +34,6 @@ export const SHARED_IMPORTS = [
   MatButtonModule,
   MatDividerModule,
   MatIconModule,
+  MatCardModule,
+  MatRadioModule
 ];

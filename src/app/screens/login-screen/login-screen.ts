@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { SHARED_IMPORTS } from '../../shared/shared.imports';
-import { Router } from 'express';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-screen',
@@ -18,6 +18,9 @@ export class LoginScreen implements OnInit {
   // Tipo de campo para la contraseña
   public typeInput: 'password' | 'text' = 'password';
 
+  //Definir el router para la navegación entre pantallas
+  private router: Router = inject(Router);
+
   constructor() {}
 
   ngOnInit(): void {}
@@ -29,7 +32,9 @@ export class LoginScreen implements OnInit {
     this.typeInput = this.typeInput === 'password' ? 'text' : 'password';
   }
 
-  public registrar() {}
+  public registrar() {
+    this.router.navigate(['/registro-usuarios']);
+  }
 
   public olvideContrasena() {}
 }
