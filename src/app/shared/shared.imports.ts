@@ -16,6 +16,12 @@ import {MatCardModule} from '@angular/material/card';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+
+/* =========================
+   ngx-mask (inputs de código)
+   ========================= */
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+
 /**
  * SHARED_IMPORTS
  * ---------------------------------------------------------
@@ -39,5 +45,8 @@ export const SHARED_IMPORTS = [
   MatCardModule,
   MatInputModule,
   MatFormFieldModule,
-  MatRadioModule
+  MatRadioModule,
+  /* ngx-mask */
+  NgxMaskDirective,
+  NgxMaskPipe
 ];
