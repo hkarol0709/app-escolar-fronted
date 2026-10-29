@@ -1,20 +1,79 @@
+@use "sass:color";
 
-// Include theming for Angular Material with `mat.theme()`.
-// This Sass mixin will define CSS variables that are used for styling Angular Material
-// components according to the Material 3 design spec.
-// Learn more about theming and how to use it for your application's
-// custom components at https://material.angular.dev/guide/theming
-@use '@angular/material' as mat;
+/* Puedes cambiar 'indigo-pink' por 'deeppurple-amber', 'pink-bluegrey' o 'purple-green' */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 
-html {
-  @include mat.theme((
-    color: (
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
-    ),
-    typography: Roboto,
-    density: 0,
-  ));
+/* Opcional: Esto asegura que tu app tome el 100% de la pantalla y quite los márgenes por defecto */
+html, body { height: 100%; }
+
+// ==========================================
+// PALETTE SUPPORT FOR ALL MODULES
+// ==========================================
+.dashboard-content,
+.table-responsive,
+table,
+.mat-elevation-z8,
+.table {
+  background: var(--table-bg, #fff) !important;
+  color: var(--text-main, #222222) !important;
+}
+
+.mat-mdc-header-cell,
+th {
+  background: var(--table-header-bg, #cfe2ff) !important;
+  color: var(--text-main, #222) !important;
+}
+
+// DARK PALETTE VARIABLES (Elegant)
+[data-theme="dark"] {
+  --background-main: #181a1b; /* Variable para el fondo general */
+  --table-bg: #1a181b;
+  --table-header-bg: #222326;
+  --table-header-border: #2c2d2f;
+  --text-main: #f5f6fa;
+  --sidebar-bg: #181a1b;
+  --sidebar-active-bg: #222326;
+  --sidebar-text: #d1d1d1;
+  --primary: #3a7afe;
+  --secondary: #bdbdbd;
+  --danger: #e57373;
+  --success: #81c784;
+  --accent: #757575;
+}
+
+// LIGHT PALETTE VARIABLES (Modern)
+[data-theme="light"] {
+  --background-main: #f5f5f5; /* Variable para el fondo general */
+  --table-bg: #fff;
+  --table-header-bg: #cfe2ff;
+  --table-header-border: #231F20;
+  --text-main: #222;
+  --sidebar-bg: #eaf1fb;
+  --sidebar-active-bg: #cfe2ff;
+  --sidebar-text: #222;
+  --primary: #1976d2;
+  --secondary: #ff9800;
+  --danger: #ff5b5b;
+  --success: #43a047;
+  --accent: #7c4dff;
+}
+
+// ==========================================
+// VARIABLES SASS
+// ==========================================
+$font-main: 'Nexa', 'Roboto', Arial, sans-serif;
+$font-size-base: 16px;
+$font-size-sm: 0.875rem;
+$font-size-lg: 1.25rem;
+$spacing-base: 8px;
+
+// ==========================================
+// MIXINS
+// ==========================================
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 // ==================== Tipos de letra ======================
@@ -57,23 +116,104 @@ html {
   font-display: swap;
 }
 
-body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
-  color-scheme: light;
-
-  // Set a default background, font and text colors for the application using
-  // Angular Material's system-level CSS variables. Learn more about these
-  // variables at https://material.angular.dev/guide/system-variables
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
-
-  // Reset the user agent margin.
+// ==========================================
+// RESET CSS ADAPTADO AL TEMA
+// ==========================================
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
-/* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html {
+  height: 100%;
+  font-size: $font-size-base;
+  /* Usamos variables dinámicas en lugar de estáticas */
+  background-color: var(--background-main, #f5f5f5);
+  color: var(--text-main, #222);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: $font-main;
+  /* Usamos variables dinámicas */
+  background-color: var(--background-main, #f5f5f5);
+  color: var(--text-main, #222);
+  line-height: 1.5;
+  letter-spacing: 0.01rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// ==========================================
+// TYPOGRAPHY
+// ==========================================
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Nexa-Bold', $font-main;
+  /* El color principal ahora cambia según el tema */
+  color: var(--primary, #1976d2);
+}
+
+a {
+  color: var(--primary, #1976d2);
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+p, span, label, input, button {
+  font-family: $font-main;
+  /* Aseguramos que hereden el color del body que ya es dinámico */
+  color: inherit;
+}
+
+// ==========================================
+// UTILITIES & FEEDBACK
+// ==========================================
+.invalid-feedback,
+.feedback-error {
+  display: block !important;
+  width: 100%;
+  font-size: $font-size-sm;
+  color: var(--danger, #ff5b5b);
+  font-family: $font-main;
+  text-align: left;
+}
+
+.feedback-success {
+  display: block !important;
+  width: 100%;
+  font-size: $font-size-sm;
+  color: var(--success, #43a047);
+  font-family: $font-main;
+  text-align: left;
+}
+
+@media (max-width: 600px) {
+  html { font-size: 15px; }
+  body { padding: $spacing-base; }
+  h1 { font-size: 2rem; }
+}
+
+@media (max-width: 430px) {
+  html { font-size: 15px; }
+  body { padding: 0!important; }
+  h1 { font-size: 2rem; }
+}
+
+.button {
+  @include flex-center;
+  padding: $spacing-base $spacing-base * 2;
+  background: var(--primary, #1976d2);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: $font-size-base;
+  cursor: pointer;
+  transition: background 0.2s;
+  &:hover, &:focus {
+    opacity: 0.9;
+  }
+}

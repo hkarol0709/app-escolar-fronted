@@ -1,6 +1,9 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { SHARED_IMPORTS } from '../../shared/shared.imports';
 import { Location } from '@angular/common';
+import { AdministradoresService } from '../../services/administradores-service';
+//Importar la interfaz de datos del administrador
+import { DatosAdministrador } from '../../interfaces/usuarios.interfaces';
 
 @Component({
   selector: 'app-registro-admin',
@@ -12,10 +15,13 @@ import { Location } from '@angular/common';
 })
 export class RegistroAdmin implements OnInit {
   @Input() rol: string = '';
-  @Input() datos_user: any = {};
+  @Input() datos_user: DatosAdministrador = {} as DatosAdministrador;
 
   //Inyectar el servicio Location para poder regresar a la página anterior
   private location = inject(Location);
+  //Inyectar el servicio de administradores para poder registrar y actualizar los datos del administrador
+  private administradoresService = inject(AdministradoresService);
+
 
   //Declarar las variables para el formulario de registro
   public admin: any = {};
@@ -32,6 +38,9 @@ export class RegistroAdmin implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    //Si el rol es administrador, se inicializa el objeto admin con los datos del usuario
+    this.admin = this.administradoresService.esquemaAdmin();
+    console.log('Datos del administrador:', this.admin);
   }
 
   public regresar(): void {
@@ -59,6 +68,19 @@ export class RegistroAdmin implements OnInit {
   }
 
   public registrar(){
+    // Lógica para validar si el usuario administrador trae datos o no en los campos del formulario
+    this.errors = {};
+    this.errors = this.administradoresService.validarAdmin(this.admin, this.editar);
+
+    console.log('Errores de validación:', this.errors);
+
+    // Si hay errores de validación, no se procede con el registro o actualización
+    if (Object.keys(this.errors).length > 0) {
+      return;
+    }
+
+    //Lógica para registrar o actualizar los datos del administrador
+    // TODO: Aquí se debe implementar la lógica para registrar o actualizar los datos del administrador en el backend, utilizando el servicio de administradores.
 
   }
 
