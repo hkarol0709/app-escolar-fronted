@@ -8,5 +8,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('app-escolar-fronted');
+  protected readonly title = signal('sistema-escolar-frontend');
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 section {
   display: flex;
   align-items: center;
@@ -21,4 +22,598 @@ section {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+=======
+/* ==========================================================
+   SISTEMA ESCOLAR - BUAP
+   Componente: Login Screen
+   Angular 20.3.14
+   Tipografía institucional: Nexa / Nexa-Bold
+   ========================================================== */
+
+// ==========================================================
+// 1. VARIABLES TIPOGRÁFICAS
+// ==========================================================
+
+$font-regular: 'Nexa';
+$font-bold: 'Nexa-Bold';
+
+// ==========================================================
+// 2. ANIMACIONES
+// ==========================================================
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Animaciones de las secciones
+.login-form-section {
+  animation: fadeInLeft 0.8s cubic-bezier(0.77, 0.2, 0.32, 1.01);
+}
+
+.login-illustration-section {
+  animation: fadeInRight 0.8s cubic-bezier(0.77, 0.2, 0.32, 1.01);
+}
+
+// Animaciones del formulario
+.login-title,
+.login-subtitle,
+.login-form {
+  animation: fadeInUp 0.7s cubic-bezier(0.77, 0.2, 0.32, 1.01);
+  animation-delay: 0.2s;
+  animation-fill-mode: backwards;
+}
+
+// Animación del mensaje de bienvenida
+.welcome-message {
+  animation: fadeInUp 0.7s cubic-bezier(0.77, 0.2, 0.32, 1.01);
+  animation-delay: 0.3s;
+  animation-fill-mode: backwards;
+}
+
+// Animación de la imagen institucional
+.login-illustration {
+  animation: fadeInUp 0.9s cubic-bezier(0.77, 0.2, 0.32, 1.01);
+  animation-delay: 0.4s;
+  animation-fill-mode: backwards;
+}
+
+// ==========================================================
+// 3. CONFIGURACIÓN TIPOGRÁFICA DEL COMPONENTE
+// ==========================================================
+
+:host {
+  display: block;
+  overflow-x: hidden;
+  font-family: $font-regular;
+  font-weight: normal;
+}
+
+// Todos los elementos heredan la tipografía institucional
+:host * {
+  box-sizing: border-box;
+}
+
+// Controles con tipografía explícita
+input,
+button,
+textarea,
+select {
+  font-family: $font-regular;
+  font-weight: normal;
+}
+
+// ==========================================================
+// 4. CONTENEDOR PRINCIPAL
+// ==========================================================
+
+.login-new {
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+}
+
+.login-container {
+  width: 100%;
+  max-width: 900px;
+  min-height: 600px;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.12);
+}
+
+// ==========================================================
+// 5. SECCIÓN IZQUIERDA: FORMULARIO
+// ==========================================================
+
+.login-form-section {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 48px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background: #fff;
+}
+
+// Identidad institucional
+.login-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.logo-buap {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.brand-title {
+  margin-top: 8px;
+  font-family: $font-bold;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #1976d2;
+}
+
+// Título y subtítulo
+.login-title {
+  margin-bottom: 8px;
+  font-family: $font-bold;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.login-subtitle {
+  margin-bottom: 32px;
+  font-family: $font-regular;
+  font-size: 1rem;
+  font-weight: normal;
+  color: #666;
+}
+
+// ==========================================================
+// 6. FORMULARIO DE INICIO DE SESIÓN
+// ==========================================================
+
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-family: $font-regular;
+}
+
+// Grupo de campos
+.form-group {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    font-family: $font-bold;
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #1976d2;
+  }
+}
+
+// Campos de entrada
+.form-control {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid #bdbdbd;
+  border-radius: 8px;
+
+  font-family: $font-regular;
+  font-size: 1rem;
+  font-weight: normal;
+
+  color: #222;
+  background: #f7f9fa;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:focus {
+    border-color: #1976d2;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.12);
+  }
+
+  &::placeholder {
+    font-family: $font-regular;
+    font-weight: normal;
+    color: #777;
+    opacity: 1;
+  }
+}
+
+// ==========================================================
+// 7. MOSTRAR Y OCULTAR CONTRASEÑA
+// ==========================================================
+
+// Contenedor del campo de contraseña
+.password-container {
+  position: relative;
+  width: 100%;
+
+  .pwd {
+    width: 100%;
+    padding-right: 48px;
+    font-family: $font-regular;
+  }
+}
+
+// Botón del icono de contraseña
+.show-password {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #1976d2;
+
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #0d47a1;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #1976d2;
+    outline-offset: 2px;
+  }
+
+  // Los iconos conservan su fuente de Bootstrap Icons
+  .bi {
+    font-family: 'bootstrap-icons' !important;
+    font-size: 1rem;
+    pointer-events: none;
+  }
+}
+
+// ==========================================================
+// 8. MENSAJES DE ERROR
+// ==========================================================
+
+.invalid-feedback {
+  margin-top: 2px;
+  font-family: $font-regular;
+  font-size: 0.85rem;
+  font-weight: normal;
+  color: #d32f2f;
+}
+
+// ==========================================================
+// 9. RECUPERACIÓN DE CONTRASEÑA
+// ==========================================================
+
+.form-links {
+  width: 100%;
+  margin-bottom: 4px;
+  text-align: right;
+}
+
+// Botones con apariencia de enlaces
+.login-text-link {
+  padding: 0;
+  border: none;
+  border-radius: 2px;
+  background: transparent;
+
+  font-family: $font-regular;
+  font-size: 0.95rem;
+  font-weight: normal;
+  color: #1976d2;
+
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover {
+    color: #0d47a1;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #1976d2;
+    outline-offset: 3px;
+  }
+}
+
+// ==========================================================
+// 10. BOTÓN DE INICIO DE SESIÓN
+// ==========================================================
+
+.btn-login {
+  width: 100%;
+  padding: 12px 0;
+  border: none;
+  border-radius: 8px;
+
+  background: #1976d2;
+  color: #fff;
+
+  font-family: $font-bold;
+  font-size: 1.1rem;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.18s cubic-bezier(0.77, 0.2, 0.32, 1.01),
+    box-shadow 0.18s ease;
+
+  &:hover:not(:disabled) {
+    background: #1565c0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(44, 62, 80, 0.12);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0d47a1;
+    outline-offset: 3px;
+  }
+
+  &:disabled {
+    background: #90caf9;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+// ==========================================================
+// 11. REGISTRO DE USUARIOS
+// ==========================================================
+
+.form-register {
+  width: 100%;
+  margin-top: 8px;
+  text-align: center;
+
+  font-family: $font-regular;
+  font-size: 0.98rem;
+  font-weight: normal;
+  color: #666;
+
+  .login-text-link {
+    margin-left: 4px;
+    font-family: $font-bold;
+    font-weight: bold;
+  }
+}
+
+// ==========================================================
+// 12. SECCIÓN DERECHA: BIENVENIDA
+// ==========================================================
+
+.login-illustration-section {
+  flex: 1 1 0;
+  min-width: 0;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 48px 32px;
+  border-radius: 16px;
+
+  background: linear-gradient(135deg, #e3f2fd 0%, #fff 100%);
+  box-shadow: 0 4px 16px rgba(44, 62, 80, 0.08);
+}
+
+// Mensaje de bienvenida
+.welcome-message {
+  margin-bottom: 24px;
+  text-align: center;
+
+  h2 {
+    font-family: $font-bold;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1976d2;
+  }
+
+  p {
+    font-family: $font-regular;
+    font-size: 1.1rem;
+    font-weight: normal;
+    color: #666;
+  }
+}
+
+// Imagen institucional
+.login-illustration {
+  width: 100%;
+  max-width: 390px;
+  height: auto;
+  margin-top: 20px;
+
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(44, 62, 80, 0.12);
+}
+
+// ==========================================================
+// 13. DISEÑO RESPONSIVO: TABLETAS
+// ==========================================================
+
+@media (max-width: 900px) {
+  .login-container {
+    max-width: 800px;
+  }
+
+  .login-form-section,
+  .login-illustration-section {
+    padding: 36px 24px;
+  }
+
+  .welcome-message h2 {
+    font-size: 1.7rem;
+  }
+}
+
+// ==========================================================
+// 14. DISEÑO RESPONSIVO: MÓVILES
+// ==========================================================
+
+@media (max-width: 700px) {
+  .login-new {
+    padding: 0;
+    align-items: stretch;
+  }
+
+  .login-container {
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+    max-width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .login-form-section,
+  .login-illustration-section {
+    padding: 32px 16px;
+    min-height: unset;
+  }
+
+  .login-form-section {
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .login-brand {
+    justify-content: center;
+  }
+
+  .login-title,
+  .login-subtitle {
+    text-align: center;
+  }
+
+  .login-form {
+    max-width: 340px;
+  }
+
+  .login-illustration {
+    max-width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .welcome-message h2 {
+    font-size: 1.4rem;
+  }
+}
+
+// ==========================================================
+// 15. DISEÑO RESPONSIVO: PANTALLAS PEQUEÑAS
+// ==========================================================
+
+@media (max-width: 400px) {
+  .login-form {
+    max-width: 100%;
+  }
+
+  .login-title {
+    font-size: 1.5rem;
+  }
+
+  .login-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .brand-title {
+    font-size: 1.1rem;
+  }
+
+  .login-form-section,
+  .login-illustration-section {
+    padding: 24px 16px;
+  }
+}
+
+// ==========================================================
+// 16. ACCESIBILIDAD: REDUCIR ANIMACIONES
+// ==========================================================
+
+@media (prefers-reduced-motion: reduce) {
+  .login-form-section,
+  .login-illustration-section,
+  .login-title,
+  .login-subtitle,
+  .login-form,
+  .welcome-message,
+  .login-illustration {
+    animation: none;
+  }
+
+  .btn-login,
+  .show-password,
+  .login-text-link,
+  .form-control {
+    transition: none;
+  }
+>>>>>>> upstream/master
 }
