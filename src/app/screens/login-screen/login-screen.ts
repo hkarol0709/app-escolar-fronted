@@ -1,50 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { SHARED_IMPORTS } from '../../shared/shared.imports';
-<<<<<<< HEAD
-import { Router } from 'express';
 
-@Component({
-  selector: 'app-login-screen',
-  imports: [
-    ...SHARED_IMPORTS,
-  ],
-  templateUrl: './login-screen.html',
-  styleUrl: './login-screen.scss',
-})
-export class LoginScreen implements OnInit { /* Compila lo de esa funcion */
-  // Inyeccion de dependencias
-  public router = inject(Router);
-
-  // Se definen las variables globales que se utilizaran en el componente
-  public username: string = '';
-  public password: string = '';
-  public load: boolean = false;
-  public errors: any = {} /* JSON significa las llaves vacias */
-  public typeInput: string = 'password';
-
-  constructor() { }
-
-  ngOnInit(): void {
-
-  }
-
-  public login(){
-
-  }
-
-  public showPassword(){
-
-  }
-
-  public registrar(){
-
-  }
-
-  public olvideContrasena(){
-
-  }
-
-=======
 import { Router } from '@angular/router';
 
 @Component({
@@ -54,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrl: './login-screen.scss',
 })
 export class LoginScreen implements OnInit {
-  //Se definen las variables globales que se utilizarán en el componente
+  // Se definen las variables globales que se utilizarán en el componente
   public username: string = '';
   public password: string = '';
   public load: boolean = false;
@@ -63,14 +19,14 @@ export class LoginScreen implements OnInit {
   // Tipo de campo para la contraseña
   public typeInput: 'password' | 'text' = 'password';
 
-  //Definir el router para la navegación entre pantallas
+  // Definir el router para la navegación entre pantallas
   private router: Router = inject(Router);
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  public login() {}
+  public login() { }
 
   // Función para mostrar y ocultar la contraseña
   showPassword(): void {
@@ -81,6 +37,5 @@ export class LoginScreen implements OnInit {
     this.router.navigate(['/registro-usuarios']);
   }
 
-  public olvideContrasena() {}
->>>>>>> upstream/master
+  public olvideContrasena() { }
 }
