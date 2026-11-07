@@ -1,35 +1,9 @@
-<<<<<<< HEAD
-section {
-  display: flex;
-  align-items: center;
-}
-
-.example-label {
-  font-size: 14px;
-  margin: 0 16px 0 8px;
-  min-width: 120px;
-}
-
-.example-button-row {
-  max-width: 600px;
-}
-
-.example-button-row .mat-mdc-button-base {
-  margin: 8px 8px 8px 0;
-}
-
-.example-flex-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-=======
-/* ==========================================================
-   SISTEMA ESCOLAR - BUAP
-   Componente: Login Screen
-   Angular 20.3.14
-   Tipografía institucional: Nexa / Nexa-Bold
-   ========================================================== */
-
+// ==========================================================
+//   SISTEMA ESCOLAR - BUAP
+//   Componente: Login Screen
+//   Angular 20.3.14
+//   Tipografía institucional: Nexa / Nexa-Bold
+// ==========================================================
 // ==========================================================
 // 1. VARIABLES TIPOGRÁFICAS
 // ==========================================================
@@ -599,6 +573,7 @@ select {
 // ==========================================================
 
 @media (prefers-reduced-motion: reduce) {
+
   .login-form-section,
   .login-illustration-section,
   .login-title,
@@ -615,5 +590,5 @@ select {
   .form-control {
     transition: none;
   }
->>>>>>> upstream/master
+
 }
