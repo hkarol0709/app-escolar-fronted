@@ -4,6 +4,8 @@ import { AuthService } from './auth-service';
 import { ErrorsService } from './tools/errors-service';
 import { ValidatorService } from './tools/validator-service';
 import { DatosAdministrador } from '../interfaces/usuarios.interfaces';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -103,4 +105,13 @@ export class AdministradoresService {
     //Return JSON con los errores encontrados, si no hay errores el JSON estará vacío
     return error;
   }
+
+
+  // Método para registrar un nuevo administrador en la base de datos
+  // Creamos la función con la endpint de la API y el método POST para enviar los datos del administrador al backend
+  public registrarAdmin(data: DatosAdministrador): Observable <any> {
+    // Llamada al endpoint de la API directamente en el return para registrar un nuevo administrador
+    return this.http.post<any>(`${environment.url_api}/admin/`, data, { headers: this.getAuthHeaders() });
+  }
+
 }

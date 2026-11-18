@@ -4,6 +4,8 @@ import { AuthService } from './auth-service';
 import { ErrorsService } from './tools/errors-service';
 import { ValidatorService } from './tools/validator-service';
 import { DatosAlumno } from '../interfaces/usuarios.interfaces';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -38,6 +40,26 @@ export class AlumnosService {
       ocupacion: ''
     };
   }
+
+  public registrarAlumno(data: any): Observable<any> {
+  const payload: any = { ...data };
+
+  // El backend no necesita este campo
+  delete payload.confirmar_password;
+
+  // El datepicker devuelve un Date; el backend espera YYYY-MM-DD
+  if (payload.fecha_nacimiento instanceof Date) {
+    const f: Date = payload.fecha_nacimiento;
+    const mes = String(f.getMonth() + 1).padStart(2, '0');
+    const dia = String(f.getDate()).padStart(2, '0');
+    payload.fecha_nacimiento = `${f.getFullYear()}-${mes}-${dia}`;
+  }
+
+  // El registro es público: no se envía token, para que una sesión vencida no cause un 401
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+  return this.http.post<any>(`${environment.url_api}/alumnos/`, payload, { headers });
+}
 
   public validarAlumno(data: DatosAlumno, editar: boolean) {
     const error: any = {};

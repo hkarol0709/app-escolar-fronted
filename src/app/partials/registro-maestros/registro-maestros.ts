@@ -72,16 +72,28 @@ export class RegistroMaestros implements OnInit {
     }
   }
 
-  public registrar() {
-    this.errors = {};
-    this.errors = this.maestrosService.validarMaestro(this.maestro, this.editar);
+  public registrar(){
+  this.errors = {};
+  this.errors = this.maestrosService.validarMaestro(this.maestro, this.editar);
 
-    if (Object.keys(this.errors).length > 0) {
-      return;
-    }
+  if (Object.keys(this.errors).length > 0) {
+    return;
   }
 
-  public actualizar() {
+  // Envía los datos validados del maestro al backend
+  this.maestrosService.registrarMaestro(this.maestro).subscribe(
+    (response) => {
+      alert('Maestro registrado correctamente');
+      this.regresar();
+    },
+    (error) => {
+      console.error(error);
+      alert('Error al registrar el maestro');
+    }
+  );
+}
+
+  public actualizar(){
     this.errors = {};
     this.errors = this.maestrosService.validarMaestro(this.maestro, this.editar);
 

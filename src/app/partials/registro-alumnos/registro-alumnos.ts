@@ -69,16 +69,28 @@ export class RegistroAlumnos implements OnInit {
     }
   }
 
-  public registrar() {
-    this.errors = {};
-    this.errors = this.alumnosService.validarAlumno(this.alumno, this.editar);
+ public registrar(){
+  this.errors = {};
+  this.errors = this.alumnosService.validarAlumno(this.alumno, this.editar);
 
-    if (Object.keys(this.errors).length > 0) {
-      return;
-    }
+  if (Object.keys(this.errors).length > 0) {
+    return;
   }
 
-  public actualizar() {
+  // Envía los datos validados al backend para registrar al alumno
+  this.alumnosService.registrarAlumno(this.alumno).subscribe(
+    (response) => {
+      alert('Alumno registrado correctamente');
+      this.regresar();
+    },
+    (error) => {
+      console.error(error);
+      alert('Error al registrar el alumno');
+    }
+  );
+}
+
+  public actualizar(){
     this.errors = {};
     this.errors = this.alumnosService.validarAlumno(this.alumno, this.editar);
 
